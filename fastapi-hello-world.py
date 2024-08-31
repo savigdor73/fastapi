@@ -20,3 +20,9 @@ def options_root():
 @app.get("/")
 def handle_root():
     return {"message": "Hello, World!"}
+    
+@app.post("/pabbly")
+async def handle_pabbly(request: Request):
+    body = await request.json()
+    data = body.get("data")
+    return {"message": f"pabbly just sent you a message with data: {data}"}

@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 
 app = FastAPI()
 
@@ -6,6 +6,8 @@ app = FastAPI()
 def read_root():
     return {"message": "Hello, World!"}
 
-@app.get("/pabbly")
-def read_pabbly():
-    return {"message": "pabbly just sent you a message"}
+@app.post("/pabbly")
+async def handle_pabbly(request: Request):
+    body = await request.json()
+    data = body.get("data")
+    return {"message": f"pabbly just sent you a message with data: {data}"}

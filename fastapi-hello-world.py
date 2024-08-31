@@ -17,17 +17,7 @@ app.add_middleware(
 def options_root():
     return JSONResponse(headers={"Allow": "GET, POST, OPTIONS"}, status_code=200)
 
-@app.options("/pabbly")
-def options_pabbly():
-    return JSONResponse(headers={"Allow": "POST, OPTIONS"}, status_code=200)
+@app.get("/")
+def handle_root():
+      return {"message": "Hello, World!"}
 
-@app.post("/pabbly")
-async def handle_pabbly(request: Request):
-    try:
-        body = await request.json()
-        data = body.get("data")
-        if data is None:
-            return JSONResponse(status_code=400, content={"error": "Missing 'data' field"})
-        return {"message": f"pabbly just sent you a message with data: {data}"}
-    except ValueError:
-        return JSONResponse(status_code=400, content={"error": "Invalid JSON"})

@@ -6,10 +6,6 @@ app = FastAPI()
 def options_root():
     return JSONResponse(headers={"Allow": "GET, POST, OPTIONS"}, status_code=200)
 
-@app.get("/")
-def read_root():
-    return {"message": "Hello, World!"}
-
 @app.post("/pabbly")
 async def handle_pabbly(request: Request):
     body = await request.json()

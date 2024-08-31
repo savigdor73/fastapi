@@ -25,4 +25,5 @@ def handle_root():
 async def handle_pabbly(request: Request):
     body = await request.json()
     data = body.get("data")
+    print("{"message": f"pabbly just sent you a message with data: {data}"}")
     return {"message": f"pabbly just sent you a message with data: {data}"}

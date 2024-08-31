@@ -15,9 +15,8 @@ app.add_middleware(
 
 @app.options("/")
 def options_root():
-    return JSONResponse(headers={"Allow": "GET, POST, OPTIONS"}, status_code=200)
+    return JSONResponse(content={}, headers={"Allow": "GET, POST, OPTIONS"}, status_code=200)
 
 @app.get("/")
 def handle_root():
-      return {"message": "Hello, World!"}
-
+    return {"message": "Hello, World!"}
